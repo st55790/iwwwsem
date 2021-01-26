@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     $db = new Database();
     if ($db->userExist($email)){
         $u = $db->getUser($email);
-        if ($u["password"] === $pass1){
+        if (password_verify($pass1, $u["password"])){
             $_SESSION['uzivatel'] = ($u["idUsers"]) ?? ''; //novejsi kontrolo pro empty(NULL)
             $_SESSION['jmeno'] = ($u["name"]) ?? '';
             $_SESSION['prijmeni'] = ($u["lastName"]) ?? '';
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
             echo($_SESSION["userName"] . " " . $_SESSION["userPrivileges"]);
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
-                header('Location:pd.php?&id='.$id);
+                header('Location:productDetail.php?&id='.$id);
             }else{
                 header('Location: /');
             }

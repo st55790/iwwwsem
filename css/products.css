@@ -1,5 +1,5 @@
 .gallery{
-    background: #FF0000;
+    background: #FFFFFF;
     margin: 0 auto;
     text-align: center;
     display: flex;
@@ -7,29 +7,36 @@
     justify-content: center;
 }
 
+a{
+    text-decoration: none;
+}
+
 .gallery img{
     width: 100%;
 }
 
 .product{
-    background: #FFFF00;
     width: 550px;
     height: 420px;
     margin: 30px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
 }
 
 .buy-button{
-    margin: 5px;
-    background: #9F9F9F;
-    border: 1px solid #000000;
-    padding: 5px;
-    display: block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 250px 5px 250px;
+
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
 }
 
 .buy-button:hover{
-    background: #BFBFBF;
+    background: #45a049;
     cursor: pointer;
 }
+
 
 

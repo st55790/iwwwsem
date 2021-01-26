@@ -1,13 +1,11 @@
 .cart{
-    background: #FF00FF;
     justify-content: space-around;
 }
 
 .itemInCart{
-    background: #00FF00;
+    background: white;
     display: flex;
-    border-style: solid;
-    border-width: 1px;
+    border: 1px solid darkgray;
     margin: 1%;
     align-items: center;
     justify-content: space-around;
@@ -18,9 +16,16 @@
 }
 
 .summary{
-    border-style: solid;
-    border-width: 1px;
-    background: #FFFF00;
+    border: 1px solid darkgray;
+    background: #4CAF50;
     margin: 1%;
     text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.summaryElement{
+    margin: 5px;
 }

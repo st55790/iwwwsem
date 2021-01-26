@@ -1,40 +1,23 @@
 body{
     background: aqua;
-
-}
-
-table, th, td {
-    border: 1px solid black;
-    margin: 1% 10% 5% 10%;
 }
 
 table{
-    text-align: center;
-    border-collapse: collapse;
-    width: 80%;
-}
-
-form{
-    margin-top: 2%;
-    margin-bottom: 2%;
-    text-align: center;
-}
-
-button{
-    margin-left: 10%;
-
-}
-
-input {
     width: 100%;
-    box-sizing: border-box;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+form{
+    margin: 1% 10% 1% 10%;
+    text-align: center;
 }
 
-.submitInput{
-    width: 100px;
+.adminTables{
+    margin: 1% 10% 1% 10%;
+    background: pink;
 }
 
-textarea {
-    width: 98%;
-    resize: vertical;
-}
+
+

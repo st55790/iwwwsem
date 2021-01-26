@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a26d072f-5e36-4ac0-9b9e-6054f7245e8f" name="Default Changelist" comment="" />
+    <list default="true" id="a26d072f-5e36-4ac0-9b9e-6054f7245e8f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/cart.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/payment.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/payment.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/productDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/productDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/products.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/products.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/order.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/payment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/pd.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/productDetail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/products.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/registration.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,13 +46,18 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP from XAMPP" />
   <component name="ProjectId" id="1kTnhnrPsPAW6y9Xrf2wOUHsYqp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -63,11 +96,23 @@
       <workItem from="1606735828251" duration="6102000" />
       <workItem from="1611390960484" duration="8483000" />
       <workItem from="1611402259828" duration="80010000" />
+      <workItem from="1611649930276" duration="37497000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="667" y="163" key="#PHP" timestamp="1606077928052">
@@ -91,13 +136,33 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1605733613801" />
-    <state x="1920" y="38" width="1706" height="1027" key="dock-window-1" timestamp="1611592453602">
+    <state x="1920" y="38" width="1697" height="1027" key="dock-window-1" timestamp="1611651336007">
       <screen x="1920" y="38" width="1768" height="952" />
     </state>
-    <state x="1920" y="38" width="1706" height="1027" key="dock-window-1/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611592453602" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606135866280">
+    <state x="1920" y="38" width="1697" height="1027" key="dock-window-1/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611651336007" />
+    <state x="1920" y="38" width="1697" height="1027" key="dock-window-2" timestamp="1611651571864">
+      <screen x="1920" y="38" width="1768" height="952" />
+    </state>
+    <state x="1920" y="38" width="1697" height="1027" key="dock-window-2/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611651571864" />
+    <state x="237" y="2" width="1697" height="1027" key="dock-window-3" timestamp="1611665719421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1606135866280" />
+    <state x="237" y="2" width="1697" height="1027" key="dock-window-3/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611665719421" />
+    <state x="1920" y="38" width="1697" height="1027" key="dock-window-4" timestamp="1611669215375">
+      <screen x="1920" y="38" width="1768" height="952" />
+    </state>
+    <state x="1920" y="38" width="1697" height="1027" key="dock-window-4/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611669215375" />
+    <state x="1920" y="38" width="1697" height="1027" key="dock-window-5" timestamp="1611672285401">
+      <screen x="1920" y="38" width="1768" height="952" />
+    </state>
+    <state x="1920" y="38" width="1697" height="1027" key="dock-window-5/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611672285401" />
+    <state x="1920" y="38" width="1697" height="1027" maximized="true" key="dock-window-6" timestamp="1611674560013">
+      <screen x="1920" y="38" width="1768" height="952" />
+    </state>
+    <state x="1920" y="38" width="1697" height="1027" maximized="true" key="dock-window-6/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611674560013" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611688313944">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611688313944" />
   </component>
 </project>

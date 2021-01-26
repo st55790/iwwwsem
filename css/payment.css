@@ -59,6 +59,14 @@ input[type=text] {
     border-radius: 3px;
 }
 
+input[type=password] {
+     width: 100%;
+     margin-bottom: 20px;
+     padding: 12px;
+     border: 1px solid #ccc;
+     border-radius: 3px;
+ }
+
 label {
     margin-bottom: 10px;
     display: block;
@@ -98,6 +106,23 @@ hr {
 span.price {
     float: right;
     color: grey;
+}
+
+table {
+    background-color: #f2f2f2;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+}
+table, th, td {
+    width: 100%;
+    border: 1px solid darkgray;
+    border-collapse: collapse;
+}
+
+th, td{
+    text-align: center;
+    width: 33%;
+    padding: 12px;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */

@@ -18,10 +18,10 @@ include "classes/Product.php";
                 echo '
             <div>
                 <div class="product">
-                    <a href="#"><img src="./img/' . $item['imgLink'] . '"/></a>
+                    <img src="./img/' . $item['imgLink'] . '"/>
                     <h3>'.$item['productName'].'</h3>
                     <h4>'.$item['price'].'.-Kč</h4>
-                    <a href="pd.php?&id=' . $item['idProduct'] . '" class="buy-button">&#128722</a>
+                    <a href="productDetail.php?&id=' . $item['idProduct'] . '" class="buy-button">&#128722</a>
                 </div>
             </div>';
                 //print_r($item);
@@ -41,14 +41,14 @@ include "classes/Product.php";
             foreach($result as $item){
                 if($item['description'] == $_GET['p']){
                     echo '
-                    <div>
+                    
                         <div class="product">
                             <a href="#"><img src="./img/' . $item['imgLink'] . '"/></a>
                             <h3>'.$item['productName'].'</h3>
                             <h4>'.$item['price'].'.-Kč</h4>
-                            <a href="pd.php?&id=' . $item['idProduct'] . '" class="buy-button">&#128722</a>
+                            <a href="productDetail.php?&id=' . $item['idProduct'] . '" class="buy-button">&#128722</a>
                         </div>
-                    </div>';
+                    ';
                         //print_r($item);
 
                     }

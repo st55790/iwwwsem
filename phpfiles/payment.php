@@ -4,13 +4,12 @@
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="order.php">
-
+                <form method="post" action="order.php">
                     <div class="row">
                         <div class="col-50">
                             <h3>Fakturační adresa</h3>
                             <label for="fname"><i class="fa fa-user"></i> Celé jméno</label>
-                            <input type="text" id="fname" name="firstname" placeholder="Jan Novák" required>
+                            <input type="text" id="fname" name="fullname" placeholder="Jan Novák" required>
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
                             <input type="text" id="email" name="email" placeholder="jannovak@email.com" required>
                             <label for="adr"><i class="fa fa-address-card-o"></i> Adresa</label>
@@ -20,8 +19,8 @@
 
                             <div class="row">
                                 <div class="col-50">
-                                    <label for="state">Stát</label>
-                                    <input type="text" id="state" name="state" placeholder="Czech Republic" required>
+                                    <label for="state">Telefon</label>
+                                    <input type="text" id="mob" name="mob" placeholder="123456789" required>
                                 </div>
                                 <div class="col-50">
                                     <label for="zip">PSČ</label>
@@ -58,7 +57,7 @@
                         </div>
 
                     </div>
-                    <input type="submit" value="Pokračuj v platbě" class="btn">
+                    <button class="btn" name="submit" type="submit" class="login_btn">Potvrdit</button>
                 </form>
             </div>
         </div>

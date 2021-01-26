@@ -2,8 +2,12 @@ body{
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+}
+
 .gallery{
-    background: #FF0000;
+    background: #FFFFFF;
     margin: 0 auto;
     text-align: center;
     display: flex;
@@ -16,23 +20,26 @@ body{
 }
 
 .product{
-    background: #FFFF00;
+    background: white;
     width: 580px;
     height: 660px;
     margin: 30px;
-    border: 1px solid black;
+    border: 1px solid darkgray;
 }
 
 .buy-button{
-    margin: 5px;
-    background: #9F9F9F;
-    border: 1px solid #000000;
+    background-color: #4CAF50;
+    color: white;
+    margin: 5%;
     padding: 5px;
-    display: block;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
 }
 
 .buy-button:hover{
-    background: #BFBFBF;
+    background: #45a049;
     cursor: pointer;
 }
 

@@ -2,6 +2,33 @@
 //require_once "../classes/Connection.php";
 //$conn = Connection::getPdoInstance();
 ?>
+
+<?php
+//include "../classes/Database.php";
+if (isset($_POST['submit'])) {
+    $email = htmlspecialchars(!empty($_POST['email']) ? trim($_POST['email']) : null);
+    $pass1 = htmlspecialchars(!empty($_POST['psw']) ? trim($_POST['psw']) : null);
+    $pass2 = htmlspecialchars(!empty($_POST['psw_repeat']) ? trim($_POST['psw_repeat']) : null);
+    $name = htmlspecialchars(!empty($_POST['name']) ? trim($_POST['name']) : null);
+    $last_name = htmlspecialchars(!empty($_POST['last_name']) ? trim($_POST['last_name']) : null);
+
+    if ($pass1 != $pass2){
+        echo("<p class='alert'>hesla se neshodují</p>");
+    }else{
+        $db = new Database();
+        if ($db->userExist($email)){
+            echo("<p class='alert'>Uzivatel jiz existuje</p>");
+        }else{
+            $hashpsw = password_hash($pass1, PASSWORD_BCRYPT);
+            $db->insertUser($name, $last_name, $email, $hashpsw, "user");
+            echo("<p class='info'><b>Uzivatel zaregistrován</b></p>");
+        }
+    }
+
+}
+
+?>
+
 <link rel="stylesheet" href="../css/login.css">
 <div class="log">
     <form method="post" action="">
@@ -23,29 +50,4 @@
         </div>
     </form>
 </div>
-
-<?php
-//include "../classes/Database.php";
-if (isset($_POST['submit'])) {
-    $email = htmlspecialchars(!empty($_POST['email']) ? trim($_POST['email']) : null);
-    $pass1 = htmlspecialchars(!empty($_POST['psw']) ? trim($_POST['psw']) : null);
-    $pass2 = htmlspecialchars(!empty($_POST['psw_repeat']) ? trim($_POST['psw_repeat']) : null);
-    $name = htmlspecialchars(!empty($_POST['name']) ? trim($_POST['name']) : null);
-    $last_name = htmlspecialchars(!empty($_POST['last_name']) ? trim($_POST['last_name']) : null);
-//var_dump($db->userExist($email)); //test
-    if ($pass1 != $pass2){
-        echo("<p class='alert'>hesla se neshodují</p>");
-    }else{
-        $db = new Database();
-        if ($db->userExist($email)){
-            echo("<p class='alert'>Uzivatel jiz existuje</p>");
-        }else{
-            $db->insertUser($name, $last_name, $email, $pass1, "user");
-            echo("<p class='info'><b>Uzivatel zaregistrován</b></p>");
-        }
-    }
-
-}
-
-?>
 

@@ -3,37 +3,26 @@
 
 class Product
 {
-    private $id;
-    private $name;
-    private $price;
-    private $vat;
-    private $link;
+    public $item;
+    public $count;
 
-    public function __construct($id, $name, $price, $vat, $link){
-        $this->id = $id;
-        $this->name = $name;
-        $this->price = $price;
-        $this->vat = $vat;
-        $this->link = $link;
+    public function __construct($item, $count)
+    {
+        $this->item = $item;
+        $this->count = $count;
     }
 
-    public function getId(){
-        return $this->id;
+    public function getItem()
+    {
+        return $this->item;
     }
 
-    public function getName(){
-        return $this->name;
+    public function getCount()
+    {
+        return $this->count;
     }
 
-    public function getPrice(){
-        return $this->price;
-    }
-
-    public function getVat(){
-        return $this->vat;
-    }
-
-    public function getLink(){
-        return $this->link;
+    public function setCount($count){
+        $this->count = $count;
     }
 }
