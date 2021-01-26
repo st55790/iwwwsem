@@ -1,0 +1,93 @@
+body{
+    margin: 0;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #2F2F2F;
+    align-items: center;
+}
+
+.categories a{
+    text-decoration: none;
+    font-size: 25px;
+    margin: 50px;
+    color: #FFFFFF;
+}
+
+.nav-account-cart a{
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFFFFF;
+    margin: 5px;
+}
+
+.nav-categories{
+   background: #2F2F2F;
+}
+
+.nav-categories ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.nav-categories .ul-category a{
+    display: block;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.nav-categories .ul-category li{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.nav-categories .ul-category > li > a{
+    padding: 20px;
+}
+
+.nav-categories .dropdown{
+    position: absolute;
+    background-color: #3F3F3F;
+    width: 150px;
+    left:0;
+    display: none;
+}
+
+.nav-categories .dropdown li,
+.nav-categories .dropdown ul li{
+    display: block;
+    width: 100%;
+}
+
+.nav-categories ul li:hover > .dropdown{
+    display: block;
+}
+
+.nav-categories .dropdown ul{
+    left:150px;
+    top:0;
+}
+
+.nav-categories .dropdown li{
+    text-align: center;
+}
+
+.nav-categories .dropdown li a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nav-categories .ul-category li:hover > a{
+    background-color: #FF0000;
+}
+
+.logoNav{
+    text-decoration: none;
+
+}
+

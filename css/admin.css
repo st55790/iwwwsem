@@ -1,0 +1,40 @@
+body{
+    background: aqua;
+
+}
+
+table, th, td {
+    border: 1px solid black;
+    margin: 1% 10% 5% 10%;
+}
+
+table{
+    text-align: center;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+form{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+button{
+    margin-left: 10%;
+
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.submitInput{
+    width: 100px;
+}
+
+textarea {
+    width: 98%;
+    resize: vertical;
+}

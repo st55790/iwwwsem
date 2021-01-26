@@ -1,0 +1,26 @@
+.cart{
+    background: #FF00FF;
+    justify-content: space-around;
+}
+
+.itemInCart{
+    background: #00FF00;
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    margin: 1%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.productImg{
+    width: 10%;
+}
+
+.summary{
+    border-style: solid;
+    border-width: 1px;
+    background: #FFFF00;
+    margin: 1%;
+    text-decoration: none;
+}
