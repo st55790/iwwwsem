@@ -34,19 +34,19 @@ if (isset($_POST['submit'])) {
     <form method="post" action="">
         <div class="form">
             <label for="email"><b>Email</b></label>
-            <input type="email" placeholder="Zadej email" name="email" id="email" required><br><br>
+            <input type="email" placeholder="Zadej email" name="email" id="email" required>
             <label for="psw"><b>Heslo</b></label>
-            <input type="password" placeholder="Zadej heslo" name="psw" id="psw" required><br><br>
+            <input type="password" placeholder="Zadej heslo" name="psw" id="psw" required>
             <label for="psw_repeat"><b>Heslo (pro kontrolu)</b></label>
-            <input type="password" placeholder="Zadej znovu heslo" name="psw_repeat" id="psw_repeat" required><br><br>
+            <input type="password" placeholder="Zadej znovu heslo" name="psw_repeat" id="psw_repeat" required>
             <label for="name"><b>Jméno</b></label>
-            <input type="text" placeholder="Zadej jméno" name="name" id="name" required><br><br>
+            <input type="text" placeholder="Zadej jméno" name="name" id="name" required>
             <label for="last_name"><b>Příjmení</b></label>
-            <input type="text" placeholder="Zadej příjmení" name="last_name" id="last_name" required><br><br>
+            <input type="text" placeholder="Zadej příjmení" name="last_name" id="last_name" required>
             <button class="btn" name="submit" type="submit" id="register_btn">Zaregistrovat</button>
         </div>
         <div class="form">
-            <p>Už máš účet ? <a href="login.php">Přihlášení</a></p>
+            <p><a href="login.php">Přihlášení</a></p>
         </div>
     </form>
 </div>

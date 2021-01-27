@@ -1,7 +1,7 @@
 <?php
 require_once "classes/Connection.php";
 require_once "classes/Database.php";
-include_once "classes/Product.php";
+require_once "classes/Product.php";
 
 $conn = Connection::getPdoInstance();
 session_start();

@@ -25,24 +25,16 @@ if (!isset($_SESSION['prava'])) {
             foreach ($_SESSION['kosik'] as $tmp) {
                 if (strcmp($tmp->getItem()['productName'], $item['productName']) == 0) {
                     $tmp->incrementCount();
-                    echo 'aktualni pocet v kosiku: '.$tmp->getCount();
-                    echo 'dalsiProdukt';
                     $exist = true;
                 }
             }
             if ($exist == false) {
-                $product = new Product($item, 0);
+                $product = new Product($item, 1);
                 array_push($_SESSION['kosik'], $product);
-                //array_push($_SESSION['kosik'], $item);
-                //echo $_SESSION['kosikPocet'];
-                echo 'prvniProdukt';
                 $_SESSION['kosikPocet']++;
             }
-            echo 'Produkt byl přidán';
         }
-
     }
-    //echo $_SESSION['kosik'][0]['price'];
 }
 
 echo '       </div>
