@@ -4,7 +4,6 @@
 
 <body>
 <?php
-include "classes/Product.php";
 
 $db = new Database();
 $item = $db->getProduct($_GET['id']);
@@ -22,25 +21,24 @@ if (!isset($_SESSION['prava'])) {
     echo '<a href="productDetail.php?&id=' . $_GET['id'] . '&koupit"><div class="buy-button">&#128722</div></a>';
     if (isset($_GET['koupit'])) {
         if (isset($_SESSION['prava'])) {
-
-            //if(in_array($item, $_SESSION['kosik'])){
-            //    echo 'existuje';
-            //}else{
-            //    $count = 0;
-            //    $product = new Product($item, $count);
-            //   array_push($_SESSION['kosik'], $product);
-            //    $_SESSION['kosikPocet']++;
-            //    //echo $_SESSION['kosikPocet'];
-            //    echo 'Produkt byl přidán';
-            //    $pd = $_SESSION['kosik'][0];
-            //    echo $pd->getCount();
-            //}
-            array_push($_SESSION['kosik'], $item);
-            $_SESSION['kosikPocet']++;
-            //echo $_SESSION['kosikPocet'];
+            $exist = false;
+            foreach ($_SESSION['kosik'] as $tmp) {
+                if (strcmp($tmp->getItem()['productName'], $item['productName']) == 0) {
+                    $tmp->incrementCount();
+                    echo 'aktualni pocet v kosiku: '.$tmp->getCount();
+                    echo 'dalsiProdukt';
+                    $exist = true;
+                }
+            }
+            if ($exist == false) {
+                $product = new Product($item, 0);
+                array_push($_SESSION['kosik'], $product);
+                //array_push($_SESSION['kosik'], $item);
+                //echo $_SESSION['kosikPocet'];
+                echo 'prvniProdukt';
+                $_SESSION['kosikPocet']++;
+            }
             echo 'Produkt byl přidán';
-            //$pd = $_SESSION['kosik'][0];
-            //print_r(array_column($_SESSION['kosik'][0], 'count'));
         }
 
     }

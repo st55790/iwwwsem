@@ -15,20 +15,12 @@
       <change beforePath="$PROJECT_DIR$/classes/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/cart.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/payment.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/payment.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/productDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/productDetail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/products.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/products.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpfiles/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phpfiles/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phpfiles/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpfiles/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phpfiles/order.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpfiles/payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/payment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpfiles/pd.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/productDetail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/productDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/productDetail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phpfiles/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/products.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpfiles/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/registration.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +73,17 @@
       <recent name="C:\xampp\htdocs\Semestralka\classes" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="htdocs" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner directory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.htdocs" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -96,7 +99,8 @@
       <workItem from="1606735828251" duration="6102000" />
       <workItem from="1611390960484" duration="8483000" />
       <workItem from="1611402259828" duration="80010000" />
-      <workItem from="1611649930276" duration="37497000" />
+      <workItem from="1611649930276" duration="37836000" />
+      <workItem from="1611739643504" duration="30786000" />
     </task>
     <servers />
   </component>
@@ -113,6 +117,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="667" y="163" key="#PHP" timestamp="1606077928052">
@@ -123,6 +128,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="919" y="163" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611399764268" />
+    <state x="737" y="66" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1611783690281">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="737" y="66" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611783690281" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1611697463338">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611697463338" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1611697463338">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611697463338" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1611697463337">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611697463337" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1611697463338">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611697463338" />
     <state x="766" y="243" key="NewPhpClassDialog" timestamp="1611395272224">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

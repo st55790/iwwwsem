@@ -19,17 +19,20 @@ if (isset($_POST['submit'])) {
 
 $sumPrice = 0;
 for ($i = 0; $i < $_SESSION['kosikPocet']; $i++) {
-    if (isset($_SESSION['kosik'][$i])) {
+    if ($_SESSION['kosik'][$i]->getCount() > 0) {
+        $item = $_SESSION['kosik'][$i]->getItem();
+        $count = $_SESSION['kosik'][$i]->getCount();
         echo '<div class="itemInCart">';
-        //echo '<img class="productImg" src="../img/' . $_SESSION['kosik'][$i]['imgLink'] . '">';
-        echo '<div class="productName">' . $_SESSION['kosik'][$i]['productName'] . '</div>';
-        echo '<div class="productPrice">' . $_SESSION['kosik'][$i]['price'] . '</div>';
-        echo '<div class="productPrice">' . $_SESSION['kosik'][$i]['vat'] . '</div>';
-        //echo $_SESSION['kosik'][$i]['idProduct'];
-        //echo  '<a href="cart.php?&smazat='.$i.'">&#10060</a><br>';
+        //echo '<img class="productImg" src="../img/' . $item['imgLink'] . '">';
+        echo '<div class="productName">' . $item['productName'] . '</div>';
+        echo '<div class="productPrice">' . $item['price'] . '</div>';
+        echo '<div class="productCount">' . $count . '</div>';
+        //echo '<a href="cart.php?&add=' . $i . '">&#10133</a>';
+        //echo '<a href="cart.php?&smazat=' . $i . '">&#10134</a>';
         echo '</div>';
-        $sumPrice += $_SESSION['kosik'][$i]['price'];
-//echo $sumPrice;
+        $sumPrice += $item['price'] * $count;
+        //echo $sumPrice;
+
     }
 }
 ?>
@@ -45,17 +48,17 @@ $db = new Database();
 $idUser = ($db->getUser($_SESSION['email'])['idUser']);
 $datetime = new DateTime();
 $time = $datetime->format('Y-m-d H:i:s');
-$db->insertOrder($idUser,$time);
+$db->insertOrder($idUser, $time);
 
 //INVOICE
-$orderId = $db->getOrder($idUser,$time);
-$db->insertInvoice($mob,$city,$zip,$orderId['idOrder']);
+$orderId = $db->getOrder($idUser, $time);
+$db->insertInvoice($mob, $city, $zip, $orderId['idOrder']);
 
 //ORDER_HAS_PRODUCT
 for ($i = 0; $i < $_SESSION['kosikPocet']; $i++) {
-    if (isset($_SESSION['kosik'][$i])) {
+    if ($_SESSION['kosik'][$i]->getCount() > 0) {
         $item = $_SESSION['kosik'][$i];
-        $db->insertOrderHasProduct($orderId['idOrder'], $item['idProduct'], $item['price'], 1);
+        $db->insertOrderHasProduct($orderId['idOrder'], $item->getItem()['idProduct'], $item->getItem()['price'], $item->getCount());
     }
 }
 //

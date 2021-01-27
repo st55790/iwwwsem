@@ -1,10 +1,9 @@
 <?php
 
-
 class Product
 {
-    public $item;
-    public $count;
+    private $item;
+    private $count;
 
     public function __construct($item, $count)
     {
@@ -20,6 +19,14 @@ class Product
     public function getCount()
     {
         return $this->count;
+    }
+
+    public function incrementCount(){
+        $this->count +=1;
+    }
+
+    public function decrementCount(){
+        $this->count -=1;
     }
 
     public function setCount($count){
