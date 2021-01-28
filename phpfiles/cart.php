@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['prava'])) {
+    header('Location:/');
+}
+?>
+
 <head>
     <link rel="stylesheet" href="../css/cart.css">
 </head>

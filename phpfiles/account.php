@@ -1,3 +1,9 @@
+<?php
+if(!isset($_SESSION['prava'])){
+    header('Location:/');
+}
+?>
+
 <link rel="stylesheet" href="../css/payment.css">
 <script>
     function myFunction() {

@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION['prava']) OR $_SESSION['prava'] != 'admin') {
+    header('Location:/');
+}
+
 $db = new Database();
 
 if (isset($_POST['submitUser'])) {

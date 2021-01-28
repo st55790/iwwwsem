@@ -11,11 +11,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a26d072f-5e36-4ac0-9b9e-6054f7245e8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/css/order.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpfiles/productDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/productDetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpfiles/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/products.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpfiles/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/order.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpfiles/payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpfiles/payment.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +100,7 @@
       <workItem from="1611402259828" duration="80010000" />
       <workItem from="1611649930276" duration="37836000" />
       <workItem from="1611739643504" duration="32186000" />
+      <workItem from="1611865601893" duration="6151000" />
     </task>
     <servers />
   </component>
@@ -113,6 +118,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
     <state x="667" y="163" key="#PHP" timestamp="1606077928052">
@@ -156,6 +164,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1605733613801" />
+    <state x="297" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611870119799">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="297" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.38.1768.952@0.0.1920.1040" timestamp="1611870119799" />
     <state x="1920" y="38" width="1697" height="1027" key="dock-window-1" timestamp="1611651336007">
       <screen x="1920" y="38" width="1768" height="952" />
     </state>
