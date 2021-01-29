@@ -5,8 +5,8 @@
 <body>
 <?php
 
-$db = new Database();
-$item = $db->getProduct($_GET['id']);
+$dbProduct = new ProductDB();
+$item = $dbProduct->getProduct($_GET['id']);
 
 
 echo '<div class="gallery">

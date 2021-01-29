@@ -53,11 +53,12 @@ function show_menu(){
 }
 
 function gen2($parrent_id){
+    $dbCategory = new CategoryDB();
     $menu = '';
 
     $db = new Database();
 
-    $result = $db->getCategories($parrent_id);
+    $result = $dbCategory->getCategories($parrent_id);
 
     //echo $row['idCategory'];
 
@@ -93,37 +94,6 @@ function gen2($parrent_id){
             <?=
             show_menu()
             ?>
-            <!--<li>
-                <a href="#">Nike</a>
-                <ul class="dropdown">
-                    <li><a href="#">Merucirial</a></li>
-                    <li><a href="#">Tiempo</a></li>
-                    <li><a href="#">Hypervenom</a></li>
-                    <li><a href="#">Superfly</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Merucirial</a></li>
-                            <li><a href="#">Tiempo</a></li>
-                            <li><a href="#">Hypervenom</a></li>
-                            <li><a href="#">Superfly</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Adidas</a>
-                <ul class="dropdown">
-                    <li><a href="#">F50</a></li>
-                    <li><a href="#">F10</a></li>
-                    <li><a href="#">Kaiser</a></li>
-                    <li><a href="#">Origin</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Puma</a>
-                <ul class="dropdown">
-                    <li><a href="#">Pro</a></li>
-                    <li><a href="#">Speed</a></li>
-                </ul>
-            </li>-->
         </ul>
     </nav>
     <div class="nav-account-cart">

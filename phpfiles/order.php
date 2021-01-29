@@ -45,16 +45,12 @@ for ($i = 0; $i < $_SESSION['kosikPocet']; $i++) {
         $item = $_SESSION['kosik'][$i]->getItem();
         $count = $_SESSION['kosik'][$i]->getCount();
         echo '<div class="itemInCart"><tr>';
-        //echo '<img class="productImg" src="../img/' . $item['imgLink'] . '">';
         echo '<td>' . $item['productName'] . '</td>';
         echo '<td>' . $count . '</td>';
         echo '<td>' . $item['vat'] . '</td>';
         echo '<td>' . $item['price'] . '</td>';
-        //echo '<a href="cart.php?&add=' . $i . '">&#10133</a>';
-        //echo '<a href="cart.php?&smazat=' . $i . '">&#10134</a>';
         echo '</tr></div>';
         $sumPrice += $item['price'] * $count;
-        //echo $sumPrice;
 
     }
 }
@@ -70,14 +66,18 @@ echo '</div>'
 
 //ORDER
 $db = new Database();
-$idUser = ($db->getUser($_SESSION['email'])['idUser']);
+$dbUser = new UserDB();
+$dbOrder = new Order();
+$dbInvoice = new InvoiceDB();
+
+$idUser = ($dbUser->getUser($_SESSION['email'])['idUser']);
 $datetime = new DateTime();
 $time = $datetime->format('Y-m-d H:i:s');
-$db->insertOrder($idUser, $time);
+$dbOrder->insertOrder($idUser, $time);
 
 //INVOICE
-$orderId = $db->getOrder($idUser, $time);
-$db->insertInvoice($mob, $city, $zip, $orderId['idOrder']);
+$orderId = $dbInvoice->getOrder($idUser, $time);
+$dbInvoice->insertInvoice($mob, $city, $zip, $orderId['idOrder']);
 
 //ORDER_HAS_PRODUCT
 for ($i = 0; $i < $_SESSION['kosikPocet']; $i++) {

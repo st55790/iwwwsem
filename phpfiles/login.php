@@ -8,9 +8,9 @@
 if (isset($_POST['submit'])) {
     $email = htmlspecialchars(!empty($_POST['email']) ? trim($_POST['email']) : null);
     $pass1 = htmlspecialchars(!empty($_POST['psw']) ? trim($_POST['psw']) : null);
-    $db = new Database();
-    if ($db->userExist($email)){
-        $u = $db->getUser($email);
+    $dbUser = new UserDB();
+    if ($dbUser->userExist($email)){
+        $u = $dbUser->getUser($email);
         if (password_verify($pass1, $u["password"])){
             $_SESSION['uzivatel'] = ($u["idUsers"]) ?? ''; //novejsi kontrolo pro empty(NULL)
             $_SESSION['jmeno'] = ($u["name"]) ?? '';

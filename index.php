@@ -1,7 +1,6 @@
 <?php
-require_once "classes/Connection.php";
-require_once "classes/Database.php";
-require_once "classes/Product.php";
+require_once "phpfiles/includes.php";
+
 
 $conn = Connection::getPdoInstance();
 session_start();

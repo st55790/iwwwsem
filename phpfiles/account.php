@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['prava'])){
+if (!isset($_SESSION['prava'])) {
     header('Location:/');
 }
 ?>
@@ -16,8 +16,8 @@ if(!isset($_SESSION['prava'])){
     }
 </script>
 <?php
-$db = new Database();
-$data = $db->getUser($_SESSION['email']);
+$dbUser = new UserDB();
+$data = $dbUser->getUser($_SESSION['email']);
 
 if (isset($_POST['submit'])) {
     $fname = htmlspecialchars(!empty($_POST['fname']) ? trim($_POST['fname']) : NULL);
@@ -26,18 +26,15 @@ if (isset($_POST['submit'])) {
     $pass = htmlspecialchars(!empty($_POST['psw']) ? trim($_POST['psw']) : null);
 
     if (isset($_SESSION['prava'])) {
-        $db->updateUser($data['idUser'], $fname, $lname, $email, $pass);
+        $dbUser->updateUser($data['idUser'], $fname, $lname, $email, $pass);
         header('Location:/account.php');
     }
 }
-//if(isset($_GET['fname'])){
-//    $db->updateUser($data['idUser'], $_GET['fname'], $_GET['lname'], $_GET['email'],$_GET['psw']);
-//    header('Location:/account.php');
-//}
+
+
 ?>
 
 <?php
-//echo 'your account info<br>';
 echo '<div class="accountPanel">
     <div class="row">
         <div class="col-75">
@@ -64,8 +61,9 @@ echo '<div class="accountPanel">
 
 
 if (isset($_GET['showOrders'])) {
-    if ($db->orderExist($data['idUser'])) {
-        $orders = $db->getUserOrders($data['idUser']);
+    $dbOrder = new OrderDB();
+    if ($dbOrder->orderExist($data['idUser'])) {
+        $orders = $dbOrder->getUserOrders($data['idUser']);
         echo '<br><br>
         <table>
             <thead>
@@ -78,7 +76,7 @@ if (isset($_GET['showOrders'])) {
             echo '<tr>
                 <td>' . $i . '. objednávka</td>
                 <td>' . $order['timeOrder'] . '</td>
-                <td><a href="account.php?&' . $order['idOrder'] . '">Zobrazit objednávku</a></td>    
+                <td><a href="account.php?&order=    ' . $order['idOrder'] . '">Zobrazit objednávku</a></td>    
             </tr>';
 
             $i++;
@@ -89,6 +87,41 @@ if (isset($_GET['showOrders'])) {
     }
 }
 echo '</div>';
+
+if (isset($_GET['order'])) {
+    $idOrder = $_GET['order'];
+
+    echo '<div id="order">';
+    $dbInvoice = new InvoiceDB();
+    $dbProduct = new ProductDB();
+    $db = new Database();
+    $invoice = $dbInvoice->getInvoiceByOrderId($idOrder);
+    $products = $db->getAllProductFromOrderByIdOrder($idOrder);
+
+    $sum = 0;
+
+    echo '<table>
+            <thead>
+                <th>Jméno produktu</th>
+                <th>Počet</th>
+                <th>Cena za kus v kč</th>
+                <th>DPH</th>
+            </thead>';
+
+    foreach ($products as $item) {
+        $product = $dbProduct->getProductById($item['Product_idProduct']);
+        echo '<tr><td>' . $product['productName']. '</td>';
+        echo '<td>' . $item['quantity']. '</td>';
+        echo '<td>' . $product['price']. '</td>';
+        echo '<td>' . $product['vat']. '</td>';
+
+        echo '</tr><br>';
+        $sum += $product['price'] * $item['quantity'];
+    }
+
+    echo 'Celkova cena objednávky: ' . $sum;
+    echo '</table></div>';
+}
 
 ?>
 

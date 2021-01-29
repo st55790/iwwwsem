@@ -1,11 +1,11 @@
 <?php
 
-    $db = new Database();
+    $dbProduct = new ProductDB();
     if(!isset($_GET['p'])){
 
-        $result = $db->getAllProducts();
+        $result = $dbProduct->getAllProducts();
 
-        if($db->getCountProducts() > 0){
+        if($dbProduct->getCountProducts() > 0){
             echo '<div class="gallery">';
             foreach($result as $item){
                 echo '
@@ -23,8 +23,8 @@
         }
 
     }else{
-        $result = $db->getProductsOfCategory();
-        if($db->getCountProducts() > 0){
+        $result = $dbProduct->getProductsOfCategory();
+        if($dbProduct->getCountProducts() > 0){
             echo '<div class="gallery">';
             foreach($result as $item){
                 if($item['description'] == $_GET['p']){

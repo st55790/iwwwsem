@@ -15,12 +15,12 @@ if (isset($_POST['submit'])) {
     if ($pass1 != $pass2){
         echo("<p class='alert'>hesla se neshodují</p>");
     }else{
-        $db = new Database();
-        if ($db->userExist($email)){
+        $dbUser = new UserDB();
+        if ($dbUser->userExist($email)){
             echo("<p class='alert'>Uzivatel jiz existuje</p>");
         }else{
             $hashpsw = password_hash($pass1, PASSWORD_BCRYPT);
-            $db->insertUser($name, $last_name, $email, $hashpsw, "user");
+            $dbUser->insertUser($name, $last_name, $email, $hashpsw, "user");
             echo("<p class='info'><b>Uzivatel zaregistrován</b></p>");
         }
     }
