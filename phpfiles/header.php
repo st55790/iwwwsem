@@ -46,44 +46,30 @@ function generate_multilevel_menus($parent_id = NULL){
 
 <?php
 
-function show_menu(){
+function show_menu()
+{
     $menus = '';
-    $menus .= gen2(NULL);
+    $menus .= generateChild(NULL);
     return $menus;
 }
 
-function gen2($parrent_id){
+function generateChild($parrent_id)
+{
     $dbCategory = new CategoryDB();
     $menu = '';
-
-    $db = new Database();
-
     $result = $dbCategory->getCategories($parrent_id);
 
-    //echo $row['idCategory'];
-
-    //$rows = $result->fetchAll(PDO::FETCH_CLASS, 'ArrayObject');
-    //print_r($result);
-    //print_r($row);
-    foreach($result as $row){
-        if($row['idCategory']){
-            $menu .= '<li><a href="products.php?&p='.$row['description'].'">'.$row['categoryName'].'</a>';
-            //echo $row['categoryName'];
-        }else{
-
+    foreach ($result as $row) {
+        if ($row['idCategory']) {
+            $menu .= '<li><a href="products.php?&p=' . $row['description'] . '">' . $row['categoryName'] . '</a>';
         }
-        //Category_idCategory
-        $menu .= '<ul class="dropdown">'.gen2($row['idCategory']).'</ul>';
-        $menu .= '</li>'; //tady něco chybí <li zacatek
+        $menu .= '<ul class="dropdown">' . generateChild($row['idCategory']) . '</ul>';
+        $menu .= '</li>';
 
     }
-    //echo $menu;
     return $menu;
 }
-
-
 ?>
-
 
 
 <div class="menu">
@@ -99,19 +85,19 @@ function gen2($parrent_id){
     <div class="nav-account-cart">
         <?php
 
-        if(isset($_SESSION['prava']) && ($_SESSION['prava'] == 'admin')){
+        if (isset($_SESSION['prava']) && ($_SESSION['prava'] == 'admin')) {
             echo '<a href="admin.php">&#128272</a>';
         }
-        if(!isset($_SESSION['prava'])){
+        if (!isset($_SESSION['prava'])) {
 
-        }else{
+        } else {
             echo '<a href="cart.php">&#128722;</a>';
             echo '<a href="logout.php">&#9940;</a>';
         }
 
-        if(isset($_SESSION['prava'])){
+        if (isset($_SESSION['prava'])) {
             echo '<a href="account.php">&#129489</a>';
-        }else{
+        } else {
             echo '<a href="login.php">&#129489</a>';
         }
         ?>

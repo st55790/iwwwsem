@@ -57,6 +57,20 @@ class CategoryDB
         }
     }
 
+    public function categoryExistById($id)
+    {
+        $sql = "SELECT COUNT(idCategory) AS num FROM category WHERE categoryName = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row['num'] > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function insertCategory($name, $desc, $idParent)
     {
         $sql = $this->conn->prepare("INSERT INTO category (categoryName, description, Category_idCategory) VALUES(:categoryName, :description, :idParent)");
@@ -72,10 +86,11 @@ class CategoryDB
 
 
     public function updateCategory($id, $name, $desc, $idParent){
+        if(empty($idParent) OR $idParent == ''){
+            $idParent = NULL;
+        }
         $stmt = $this->conn->prepare("UPDATE category SET categoryName=:categoryName, description=:description, Category_idCategory=:idParent WHERE idCategory=:id");
         $stmt->execute(['categoryName' => $name, 'description' => $desc, 'idParent' => $idParent, 'id' => $id,]);
-        $result = $stmt->fetchAll();
-        return $result;
     }
 
     public function getAllCategory(){

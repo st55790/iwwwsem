@@ -3,6 +3,7 @@ if (!isset($_SESSION['prava'])) {
     header('Location:/');
 }
 ?>
+<!-- https://www.w3schools.com/howto/howto_css_checkout_form.asp -->
 
 <link rel="stylesheet" href="../css/payment.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

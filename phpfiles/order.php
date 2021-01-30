@@ -67,7 +67,7 @@ echo '</div>'
 //ORDER
 $db = new Database();
 $dbUser = new UserDB();
-$dbOrder = new Order();
+$dbOrder = new OrderDB();
 $dbInvoice = new InvoiceDB();
 
 $idUser = ($dbUser->getUser($_SESSION['email'])['idUser']);

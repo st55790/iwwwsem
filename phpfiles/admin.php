@@ -35,6 +35,9 @@ if (isset($_POST['submitCategory'])) {
     if ($dbCategory->categoryExist($name)) {
         echo("<p class='alert'>Kategorie jiz existuje</p>");
     } else {
+        if(!$dbCategory->categoryExistById($idParent)){
+            $idParent = '39 ';
+        }
         $dbCategory->insertCategory($name, $desc, $idParent);
         header('Location:/admin.php?table=category');
     }
@@ -162,7 +165,6 @@ if (isset($_POST['productEditSubmit'])) {
             $db->insertProductHasCategory($_GET['edit'], $value);
         }
     }
-
     header('Location:/admin.php?table=product');
 }
 
@@ -171,7 +173,9 @@ if (isset($_POST['categoryEditSubmit'])) {
     $name = htmlspecialchars(!empty($_POST['categoryName']) ? trim($_POST['categoryName']) : null);
     $desc = htmlspecialchars(!empty($_POST['categoryDescription']) ? trim($_POST['categoryDescription']) : null);
     $idParent = htmlspecialchars(!empty($_POST['categoryIdCategory']) ? trim($_POST['categoryIdCategory']) : null);
-
+    if(!$dbCategory->categoryExistById($idParent)){
+        $idParent = '39 ';
+    }
     $dbCategory->updateCategory($_GET['edit'], $name, $desc, $idParent);
     header('Location:/admin.php?table=category');
 }
@@ -181,7 +185,7 @@ if (isset($_POST['categoryEditSubmit'])) {
 <head>
     <link rel="stylesheet" href="../css/admin.css">
 </head>
-
+<!--https://stackoverflow.com/questions/590018/getting-all-selected-checkboxes-in-an-array-->
 <script>
     var array = []
     var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
@@ -195,13 +199,50 @@ if (isset($_POST['categoryEditSubmit'])) {
     <input type="submit" name="table" value="user">
     <input type="submit" name="table" value="category">
     <input type="submit" name="table" value="product">
+    <input type="submit" name="json" value="loadCategoryFromJson">
+    <input type="submit" name="json" value="saveCategoryFromJson">
 </form>
+
+<?php
+if(isset($_GET['json'])){
+    $dbCategory = new CategoryDB();
+
+    if($_GET['json']== 'loadCategoryFromJson'){
+        if(file_exists('category.json')){
+            $json = file_get_contents('category.json');
+            $arrayCat = json_decode($json, true);
+            foreach ($arrayCat as $cat){
+                if(!$dbCategory->categoryExist($cat['categoryName'])){
+                    $idParent = $cat['Category_idCategory'];
+                    if($cat['Category_idCategory'] == ''){
+                        $idParent = NULL;
+                    }
+                    $dbCategory->insertCategory($cat['categoryName'], $cat['description'], $idParent);
+                }
+            }
+            echo 'Json was loaded';
+        }else{
+            echo 'Je potřeba dát do složky soubor: "category.json", který obsahuje json data pro přidání do tabulky category';
+        }
+    }
+
+    if($_GET['json'] == 'saveCategoryFromJson'){
+        $allCat = $dbCategory->getAllCategory();
+        $json = json_encode($allCat);
+        $bytes = file_put_contents('category.json', $json);
+        echo 'Json was created!';
+    }
+
+    //header('Location:/admin.php');
+}
+?>
 
 
 <?php
 //ADD
-echo '<div class=addForm>';
-if (isset($_GET['table'])) {
+
+if (isset($_GET['table']) AND !isset($_GET['edit'])) {
+    echo '<div class=addForm>';
     if ($_GET['table'] == 'user') {
         echo '<form method="post" action="">
                 <label>Firstname</label>
@@ -240,11 +281,16 @@ if (isset($_GET['table'])) {
                 <label>Product name</label>
                 <input type="text" name="productName" required><br>
                 <label>Price</label>
-                <input type="text" name="productPrice" required><br>
+                <input type="number" step="0.01" min="0" name="productPrice" required><br>
                 <label>Description</label><br>
                 <textarea rows=10 cols="110 type="text" name="productDescription" required></textarea><br>
-                <label>VAT</label>
-                <input type="number" name="productVat" required><br><br>
+                <label>VAT</label><br>
+                <select type="number" name="vat">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="21">21</option>
+                </select>
+                <!--<input type="number" step="0.01" min="0" name="productVat" required><br><br>-->
                 <div class="checkboxes">
                 ';
                 foreach ($allCat as $cat){
@@ -256,8 +302,9 @@ if (isset($_GET['table'])) {
                 <input type="submit"Přidej name="submitProduct" value="Add">
            </form><br>';
     }
+    echo '</div>';
 }
-echo '</div>';
+
 
 //EDIT+REMOVE
 if (isset($_GET['table'])) {
@@ -335,7 +382,12 @@ if (isset($_GET['table'])) {
                 <input type="number" name="productPrice" value="' . $product['price'] . '"required><br>
                 <label>Description</label><br>
                 <textarea rows=10 cols=100 type="text" name="productDescription" required>' . $product['productDescription'] . '</textarea><br>
-                <label>VAT</label>
+                <label>VAT</label><br>
+                <select type="number" name="vat">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="21">21</option>
+                </select>
                 <input type="number" name="productVat" value="' . $product['vat'] . '"required><br><br>
                 <div class="checkboxes">
                 ';
@@ -375,6 +427,7 @@ if (isset($_GET['table'])) {
 
 echo '<div class="adminTables">';
 
+//TABLES
 if (isset($_GET['table'])) {
     $db = new Database();
     $tab = $_GET['table'];

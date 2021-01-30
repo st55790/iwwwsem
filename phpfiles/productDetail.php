@@ -38,8 +38,6 @@ if (!isset($_SESSION['prava'])) {
 }
 
 echo '       </div>
-      </div>
-';
-
+      </div>';
 ?>
 </body>
