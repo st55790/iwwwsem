@@ -75,6 +75,9 @@ function generateChild($parrent_id)
 <div class="menu">
     <div><a class="logoNav" href="../"><img src="../img/logo.png"></a></div>
 
+    <label for="hamburger">&#9776</label>
+    <input type="checkbox" id="hamburger"/>
+
     <nav class="nav-categories">
         <ul class="ul-category">
             <?=

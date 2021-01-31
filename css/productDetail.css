@@ -48,3 +48,23 @@ p{
     padding-left: 30px;
 }
 
+@media screen and (max-width: 800px) {
+    .product{
+        width: auto;
+        height: auto;
+        margin: 30px;
+        border: 1px solid lightgray;
+    }
+
+    .buy-button{
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px 150px 5px 150px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 17px;
+    }
+
+}
+

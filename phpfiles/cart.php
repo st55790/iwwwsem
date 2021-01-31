@@ -13,29 +13,18 @@ if (!isset($_SESSION['prava'])) {
     $sumPrice = 0;
     if (isset($_GET['smazat'])) {
         $id = $_GET['smazat'];
-        //$sumPrice = $sumPrice - $_SESSION['kosik'][$id]['price'];
         $_SESSION['kosik'][$id]->decrementCount();
-        //unset($_SESSION['kosik'][$id]);
         header('Location:/cart.php');
     }
     if (isset($_GET['add'])) {
         $id = $_GET['add'];
-        //$sumPrice = $sumPrice - $_SESSION['kosik'][$id]['price'];
         $_SESSION['kosik'][$id]->incrementCount();
-        //unset($_SESSION['kosik'][$id]);
         header('Location:/cart.php');
     }
     for ($i = 0; $i < $_SESSION['kosikPocet']; $i++) {
-        //foreach($_SESSION['kosik'] as $item){
         if ($_SESSION['kosik'][$i]->getCount() > 0) {
-            //$tmp = $_SESSION['kosik'][0];
-            //print_r($tmp);
-            //echo $count[0];
-            //print_r($count);
             $item = $_SESSION['kosik'][$i]->getItem();
             $count = $_SESSION['kosik'][$i]->getCount();
-            //echo $item;
-            //$product = $item->getItem();
             echo '<div class="itemInCart">';
             echo '<img class="productImg" src="../img/' . $item['imgLink'] . '">';
             echo '<div class="productName">' . $item['productName'] . '</div>';
@@ -45,8 +34,6 @@ if (!isset($_SESSION['prava'])) {
             echo '<a href="cart.php?&smazat=' . $i . '">&#10134</a>';
             echo '</div>';
             $sumPrice += $item['price']*$count;
-            //echo $sumPrice;
-
         }
     }
 

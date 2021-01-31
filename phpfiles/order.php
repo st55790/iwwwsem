@@ -76,7 +76,7 @@ $time = $datetime->format('Y-m-d H:i:s');
 $dbOrder->insertOrder($idUser, $time);
 
 //INVOICE
-$orderId = $dbInvoice->getOrder($idUser, $time);
+$orderId = $dbOrder->getOrder($idUser, $time);
 $dbInvoice->insertInvoice($mob, $city, $zip, $orderId['idOrder']);
 
 //ORDER_HAS_PRODUCT

@@ -35,7 +35,7 @@ if (isset($_POST['submitCategory'])) {
     if ($dbCategory->categoryExist($name)) {
         echo("<p class='alert'>Kategorie jiz existuje</p>");
     } else {
-        if(!$dbCategory->categoryExistById($idParent)){
+        if (!$dbCategory->categoryExistById($idParent)) {
             $idParent = '39 ';
         }
         $dbCategory->insertCategory($name, $desc, $idParent);
@@ -44,7 +44,6 @@ if (isset($_POST['submitCategory'])) {
 }
 
 if (isset($_POST['submitProduct'])) {
-
 
     $name = htmlspecialchars(!empty($_POST['productName']) ? trim($_POST['productName']) : null);
     $price = htmlspecialchars(!empty($_POST['productPrice']) ? trim($_POST['productPrice']) : null);
@@ -71,9 +70,9 @@ if (isset($_POST['submitProduct'])) {
                 $dbProduct->insertProduct($name, $price, $desc, $vat, $filename);
 
                 $newProduct = $dbProduct->getProductByName($name);
-                if(!empty($_POST['checkCats'])) {
+                if (!empty($_POST['checkCats'])) {
                     $db = new Database();
-                    foreach($_POST['checkCats'] as $value){
+                    foreach ($_POST['checkCats'] as $value) {
                         $db->insertProductHasCategory($newProduct['idProduct'], $value);
                     }
                 }
@@ -138,10 +137,10 @@ if (isset($_POST['productEditSubmit'])) {
                     unlink('img/' . $product['imgLink']);
                     $dbProduct->updateProduct($_GET['edit'], $name, $price, $desc, $vat, $filename);
 
-                    if(!empty($_POST['checkCats'])) {
+                    if (!empty($_POST['checkCats'])) {
                         $db = new Database();
                         $db->deleteProductHasCategory($_GET['edit']);
-                        foreach($_POST['checkCats'] as $value){
+                        foreach ($_POST['checkCats'] as $value) {
                             $db->insertProductHasCategory($_GET['edit'], $value);
                         }
                     }
@@ -158,10 +157,10 @@ if (isset($_POST['productEditSubmit'])) {
         $dbProduct->updateProduct($_GET['edit'], $name, $price, $desc, $vat, $product['imgLink']);
     }
 
-    if(!empty($_POST['checkCats'])) {
+    if (!empty($_POST['checkCats'])) {
         $db = new Database();
         $db->deleteProductHasCategory($_GET['edit']);
-        foreach($_POST['checkCats'] as $value){
+        foreach ($_POST['checkCats'] as $value) {
             $db->insertProductHasCategory($_GET['edit'], $value);
         }
     }
@@ -173,7 +172,7 @@ if (isset($_POST['categoryEditSubmit'])) {
     $name = htmlspecialchars(!empty($_POST['categoryName']) ? trim($_POST['categoryName']) : null);
     $desc = htmlspecialchars(!empty($_POST['categoryDescription']) ? trim($_POST['categoryDescription']) : null);
     $idParent = htmlspecialchars(!empty($_POST['categoryIdCategory']) ? trim($_POST['categoryIdCategory']) : null);
-    if(!$dbCategory->categoryExistById($idParent)){
+    if (!$dbCategory->categoryExistById($idParent)) {
         $idParent = '39 ';
     }
     $dbCategory->updateCategory($_GET['edit'], $name, $desc, $idParent);
@@ -204,29 +203,29 @@ if (isset($_POST['categoryEditSubmit'])) {
 </form>
 
 <?php
-if(isset($_GET['json'])){
+if (isset($_GET['json'])) {
     $dbCategory = new CategoryDB();
 
-    if($_GET['json']== 'loadCategoryFromJson'){
-        if(file_exists('category.json')){
+    if ($_GET['json'] == 'loadCategoryFromJson') {
+        if (file_exists('category.json')) {
             $json = file_get_contents('category.json');
             $arrayCat = json_decode($json, true);
-            foreach ($arrayCat as $cat){
-                if(!$dbCategory->categoryExist($cat['categoryName'])){
+            foreach ($arrayCat as $cat) {
+                if (!$dbCategory->categoryExist($cat['categoryName'])) {
                     $idParent = $cat['Category_idCategory'];
-                    if($cat['Category_idCategory'] == ''){
+                    if ($cat['Category_idCategory'] == '') {
                         $idParent = NULL;
                     }
                     $dbCategory->insertCategory($cat['categoryName'], $cat['description'], $idParent);
                 }
             }
             echo 'Json was loaded';
-        }else{
+        } else {
             echo 'Je potřeba dát do složky soubor: "category.json", který obsahuje json data pro přidání do tabulky category';
         }
     }
 
-    if($_GET['json'] == 'saveCategoryFromJson'){
+    if ($_GET['json'] == 'saveCategoryFromJson') {
         $allCat = $dbCategory->getAllCategory();
         $json = json_encode($allCat);
         $bytes = file_put_contents('category.json', $json);
@@ -241,7 +240,7 @@ if(isset($_GET['json'])){
 <?php
 //ADD
 
-if (isset($_GET['table']) AND !isset($_GET['edit'])) {
+if (isset($_GET['table']) and !isset($_GET['edit'])) {
     echo '<div class=addForm>';
     if ($_GET['table'] == 'user') {
         echo '<form method="post" action="">
@@ -283,7 +282,12 @@ if (isset($_GET['table']) AND !isset($_GET['edit'])) {
                 <label>Price</label>
                 <input type="number" step="0.01" min="0" name="productPrice" required><br>
                 <label>Description</label><br>
+                <!--<p><span id="productDescription" class="textarea" role="textbox" contenteditable ></span></p>
                 <textarea rows=10 cols="110 type="text" name="productDescription" required></textarea><br>
+                -->
+                    <div class="comment">
+                        <textarea class="textinput"  name="productDescription" required></textarea>
+                    </div>
                 <label>VAT</label><br>
                 <select type="number" name="vat">
                     <option value="10">10</option>
@@ -293,13 +297,13 @@ if (isset($_GET['table']) AND !isset($_GET['edit'])) {
                 <!--<input type="number" step="0.01" min="0" name="productVat" required><br><br>-->
                 <div class="checkboxes">
                 ';
-                foreach ($allCat as $cat){
-                    echo '<div class="checkValue"><input type="checkbox" name="checkCats[]" value="'.$cat['idCategory'].'">';
-                    echo '<label>'.$cat['categoryName'].'</label></div>';
-                }
-        echo    '</div><br>
+        foreach ($allCat as $cat) {
+            echo '<div class="checkValue"><input type="checkbox" name="checkCats[]" value="' . $cat['idCategory'] . '">';
+            echo '<label>' . $cat['categoryName'] . '</label></div>';
+        }
+        echo '</div><br>
                 <input type="file" name="file"><br><br>
-                <input type="submit"Přidej name="submitProduct" value="Add">
+                <input onclick="getDes()" type="submit"Přidej name="submitProduct" value="Add">
            </form><br>';
     }
     echo '</div>';
@@ -381,7 +385,10 @@ if (isset($_GET['table'])) {
                 <label>Price</label>
                 <input type="number" name="productPrice" value="' . $product['price'] . '"required><br>
                 <label>Description</label><br>
-                <textarea rows=10 cols=100 type="text" name="productDescription" required>' . $product['productDescription'] . '</textarea><br>
+                <!--<textarea rows=10 cols=100 type="text" name="productDescription" required>' . $product['productDescription'] . '</textarea><br>-->
+                <div class="comment">
+                    <textarea class="textinput"  name="productDescription" required>'.$product['productDescription'].'</textarea>
+                </div>
                 <label>VAT</label><br>
                 <select type="number" name="vat">
                     <option value="10">10</option>
@@ -391,22 +398,22 @@ if (isset($_GET['table'])) {
                 <input type="number" name="productVat" value="' . $product['vat'] . '"required><br><br>
                 <div class="checkboxes">
                 ';
-            foreach ($allCat as $cat){
+            foreach ($allCat as $cat) {
                 $exist = false;
                 echo '<div class="checkValue">';
-                foreach ($productCat as $pc){
-                    if($pc['idCategory'] === $cat['idCategory']){
-                        echo '<input type="checkbox" name="checkCats[]" value="'.$cat['idCategory'].'" checked>';
+                foreach ($productCat as $pc) {
+                    if ($pc['idCategory'] === $cat['idCategory']) {
+                        echo '<input type="checkbox" name="checkCats[]" value="' . $cat['idCategory'] . '" checked>';
                         $exist = true;
                         break;
                     }
                 }
-                if(!$exist){
-                    echo '<input type="checkbox" name="checkCats[]" value="'.$cat['idCategory'].'">';
+                if (!$exist) {
+                    echo '<input type="checkbox" name="checkCats[]" value="' . $cat['idCategory'] . '">';
                 }
-                echo '<label>'.$cat['categoryName'].'</label></div>';
+                echo '<label>' . $cat['categoryName'] . '</label></div>';
             }
-            echo    '</div><br>
+            echo '</div><br>
                 <label>Load new image</label>
                 <input type="file" name="file"><br><br>
                 <input type="submit" name="productEditSubmit" value="Edit">
@@ -425,16 +432,16 @@ if (isset($_GET['table'])) {
     }
 }
 
-echo '<div class="adminTables">';
-
 //TABLES
 if (isset($_GET['table'])) {
     $db = new Database();
     $tab = $_GET['table'];
     $tableData = $db->getAllFromTable($tab);
+    echo '<div class="adminTables">';
+    echo '<div>';
     if ($tab == 'user') {
         echo '<table>
-                    <thred>
+                    <thead>
                         <tr>
                             <th>ID</th>
                             <th>Firstname</th>
@@ -444,7 +451,7 @@ if (isset($_GET['table'])) {
                             <th>Privileges</th>
                             <th colspan="2">Action</th>
                         </tr>
-                    </thred>';
+                    </thead>';
         foreach ($tableData as $data) {
             echo '<tr>
                     <td>' . $data['idUser'] . '</td>
@@ -463,7 +470,7 @@ if (isset($_GET['table'])) {
     }
     if ($tab == 'product') {
         echo '<table>
-                    <thred>
+                    <thead>
                         <tr>
                             <th>ID</th>
                             <th>Product name</th>
@@ -473,7 +480,7 @@ if (isset($_GET['table'])) {
                             <th>Img link</th>
                             <th colspan="2">Action</th>
                         </tr>
-                    </thred>';
+                    </thead>';
         foreach ($tableData as $data) {
             echo '<tr>
                     <td>' . $data['idProduct'] . '</td>
@@ -492,7 +499,7 @@ if (isset($_GET['table'])) {
     }
     if ($tab == 'category') {
         echo '<table>
-                    <thred>
+                    <thead>
                         <tr>
                             <th>ID</th>
                             <th>Category name</th>
@@ -500,7 +507,7 @@ if (isset($_GET['table'])) {
                             <th>ID parent</th>
                             <th colspan="2">Action</th>
                         </tr>
-                    </thred>';
+                    </thead>';
         foreach ($tableData as $data) {
             echo '<tr>
                     <td>' . $data['idCategory'] . '</td>
@@ -515,9 +522,9 @@ if (isset($_GET['table'])) {
         }
         echo '</table>';
     }
+    echo '</div>';
+    echo '</div>';
 }
-
-echo '</div>';
 ?>
 
 

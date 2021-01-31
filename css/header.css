@@ -88,12 +88,49 @@ body{
 
 .logoNav{
     text-decoration: none;
+}
 
+#hamburger, .menu label{
+    display: none;
 }
 
 @media print {
     .menu{
         display: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .logoNav img{
+        width: 50px;
+        margin: 5px;
+    }
+    .nav-account-cart a{
+        text-decoration: none;
+        font-size: 20px;
+        color: #FFFFFF;
+        margin: 5px;
+    }
+
+
+    .menu label{
+        display: inline-block;
+        color: #FFFFFF;
+        font-size: 50px;
+        margin-right: auto;
+        margin-bottom: 5px;
+    }
+
+    nav{
+        display: none;
+    }
+
+    .menu input:checked ~ nav{
+        display: block;
+    }
+
+    .menu input:checked ~ .nav-categories .dropdown{
+        position: static;
     }
 }
 

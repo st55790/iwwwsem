@@ -26,7 +26,6 @@ a{
     background-color: #4CAF50;
     color: white;
     padding: 5px 250px 5px 250px;
-
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -37,6 +36,27 @@ a{
     background: #45a049;
     cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+    .product{
+        width: 280px;
+        height: 280px;
+        margin: 30px;
+        border: 1px solid lightgray;
+    }
+
+    .buy-button{
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px 90px 5px 90px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 17px;
+    }
+
+}
+
 
 
 
