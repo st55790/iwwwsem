@@ -29,12 +29,13 @@ class Database
         if ($table == 'product') {
             $sql = $this->conn->prepare("SELECT * FROM product");
         }
+        if($table == 'orders'){
+            $sql = $this->conn->prepare("SELECT * FROM orders o, user u WHERE u.idUser = o.User_idUser ORDER BY o.timeOrder DESC");
+        }
         $sql->execute();
         $result = $sql->fetchAll();
         return $result;
     }
-
-
 
     public function insertOrderHasProduct($idOrder, $idProduct, $price, $quantity)
     {
@@ -64,5 +65,18 @@ class Database
     public function deleteProductHasCategory($id){
         $stmt = $this->conn->prepare("DELETE FROM product_has_category WHERE Product_idProduct=:id");
         $stmt->execute(['id'=>$id]);
+    }
+
+    public function getCompleteOrder($id){
+        $stmt = $this->conn->prepare("SELECT u.firstName, u.lastName, i.phone, i.city, i.postCode FROM user u, orders o, invoice i WHERE u.idUser = o.User_idUser AND i.Order_idOrder = o.idOrder AND o.idOrder =:id");
+        $stmt->execute(['id'=>$id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function getSumOrder($id){
+        $stmt = $this->conn->prepare("SELECT SUM(price*quantity) AS SUMA FROM order_has_product WHERE Order_idOrder =:id");
+        $stmt->execute(['id'=>$id]);
+        $result = $stmt->fetchColumn();
+        return $result;
     }
 }

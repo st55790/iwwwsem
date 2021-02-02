@@ -49,4 +49,10 @@ class OrderDB
         $result = $sql->fetchAll();
         return $result;
     }
+
+    public function deleteFullOrder($id){
+        $sql = $this->conn->prepare("DELETE FROM orders WHERE idOrder=:id");
+        $sql->bindParam(':id', $id);
+        $sql->execute();
+    }
 }

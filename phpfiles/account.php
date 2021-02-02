@@ -57,7 +57,7 @@ echo '<div class="accountPanel">
            </div>
         </div>
         <br>
-        <a href="account.php?&showOrders"><button class="btn" name="showOrders" type="submit" class="login_btn">Zobraz moje objednávky</button></a>';
+        <a href="account.php?showOrders"><button class="btn" name="showOrders" type="submit" class="login_btn">Zobraz moje objednávky</button></a>';
 
 
 if (isset($_GET['showOrders'])) {
@@ -76,7 +76,7 @@ if (isset($_GET['showOrders'])) {
             echo '<tr>
                 <td>' . $i . '. objednávka</td>
                 <td>' . $order['timeOrder'] . '</td>
-                <td><a href="account.php?&order=    ' . $order['idOrder'] . '">Zobrazit objednávku</a></td>    
+                <td><a href="account.php?order=' . $order['idOrder'] . '">Zobrazit objednávku</a></td>    
             </tr>';
 
             $i++;

@@ -27,8 +27,8 @@ class UserDB
 
     public function insertUser($firstName, $lastName, $email, $password, $privileges)
     {
-        $sql = "INSERT INTO user (firstName, lastName, email, password, privileges) VALUES (':firstName', ':lastName', ':email',':psw',':privileges')";
-        $this->conn->exec(['firstName'=>$firstName, 'lastName'=>$lastName, 'email'=>$email, 'psw'=>$password, 'privileges'=>$privileges]);
+        $sql = $this->conn->prepare("INSERT INTO user (firstName, lastName, email, password, privileges) VALUES (:firstName, :lastName, :email,:psw,:privil)");
+        $sql->execute(['firstName'=>$firstName, 'lastName'=>$lastName, 'email'=>$email, 'psw'=>$password, 'privil'=>$privileges]);
     }
 
     public function deleteUser($id)

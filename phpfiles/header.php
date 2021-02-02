@@ -61,7 +61,7 @@ function generateChild($parrent_id)
 
     foreach ($result as $row) {
         if ($row['idCategory']) {
-            $menu .= '<li><a href="products.php?&p=' . $row['description'] . '">' . $row['categoryName'] . '</a>';
+            $menu .= '<li><a href="products.php?p=' . $row['description'] . '">' . $row['categoryName'] . '</a>';
         }
         $menu .= '<ul class="dropdown">' . generateChild($row['idCategory']) . '</ul>';
         $menu .= '</li>';

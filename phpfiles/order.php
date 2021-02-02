@@ -24,11 +24,11 @@ if (isset($_POST['submit'])) {
     echo 'PSČ: 12345<br></div>';
 
     echo '<div class="billingAddress">Fakturační adresa<br>';
-    echo 'Cele jmeno: ' . $fname .'<br>';
-    echo 'Email: ' . $email.'<br>';
-    echo 'Adresa: ' . $adr.'<br>';
-    echo 'Město: ' . $city.'<br>';
-    echo 'Stát: ' . $mob.'<br>';
+    echo 'Cele jmeno: ' . $fname . '<br>';
+    echo 'Email: ' . $email . '<br>';
+    echo 'Adresa: ' . $adr . '<br>';
+    echo 'Město: ' . $city . '<br>';
+    echo 'Stát: ' . $mob . '<br>';
     echo 'PSČ: ' . $zip . '<br></div></div>';
 }
 
@@ -63,33 +63,35 @@ echo '</div>'
 ?>
 
 <?php
+if ($_SESSION['kosikPocet'] != 0) {
+    //ORDER
+    $db = new Database();
+    $dbUser = new UserDB();
+    $dbOrder = new OrderDB();
+    $dbInvoice = new InvoiceDB();
 
-//ORDER
-$db = new Database();
-$dbUser = new UserDB();
-$dbOrder = new OrderDB();
-$dbInvoice = new InvoiceDB();
+    $idUser = ($dbUser->getUser($_SESSION['email'])['idUser']);
+    $datetime = new DateTime();
+    $time = $datetime->format('Y-m-d H:i:s');
+    $dbOrder->insertOrder($idUser, $time);
 
-$idUser = ($dbUser->getUser($_SESSION['email'])['idUser']);
-$datetime = new DateTime();
-$time = $datetime->format('Y-m-d H:i:s');
-$dbOrder->insertOrder($idUser, $time);
+    //INVOICE
+    $orderId = $dbOrder->getOrder($idUser, $time);
+    $dbInvoice->insertInvoice($mob, $city, $zip, $orderId['idOrder']);
 
-//INVOICE
-$orderId = $dbOrder->getOrder($idUser, $time);
-$dbInvoice->insertInvoice($mob, $city, $zip, $orderId['idOrder']);
-
-//ORDER_HAS_PRODUCT
-for ($i = 0; $i < $_SESSION['kosikPocet']; $i++) {
-    if ($_SESSION['kosik'][$i]->getCount() > 0) {
-        $item = $_SESSION['kosik'][$i];
-        $db->insertOrderHasProduct($orderId['idOrder'], $item->getItem()['idProduct'], $item->getItem()['price'], $item->getCount());
+    //ORDER_HAS_PRODUCT
+    for ($i = 0; $i < $_SESSION['kosikPocet']; $i++) {
+        if ($_SESSION['kosik'][$i]->getCount() > 0) {
+            $item = $_SESSION['kosik'][$i];
+            $db->insertOrderHasProduct($orderId['idOrder'], $item->getItem()['idProduct'], $item->getItem()['price'], $item->getCount());
+        }
     }
-}
-//
 
-$_SESSION['kosikPocet'] = 0;
-unset($_SESSION['kosik']);
-$_SESSION['kosik'] = array();
+    $_SESSION['kosikPocet'] = 0;
+    unset($_SESSION['kosik']);
+    $_SESSION['kosik'] = array();
+}else{
+    echo 'Objednávka již byla zpracována';
+}
 ?>
 

@@ -59,7 +59,7 @@ class CategoryDB
 
     public function categoryExistById($id)
     {
-        $sql = "SELECT COUNT(idCategory) AS num FROM category WHERE categoryName = :id";
+        $sql = "SELECT COUNT(idCategory) AS num FROM category WHERE idCategory = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();

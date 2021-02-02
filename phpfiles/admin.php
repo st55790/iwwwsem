@@ -35,8 +35,10 @@ if (isset($_POST['submitCategory'])) {
     if ($dbCategory->categoryExist($name)) {
         echo("<p class='alert'>Kategorie jiz existuje</p>");
     } else {
-        if (!$dbCategory->categoryExistById($idParent)) {
-            $idParent = '39 ';
+        if ($idParent == 0) {
+            $idParent = NULL;
+        } else if (!$dbCategory->categoryExistById($idParent)) {
+            $idParent = '61';
         }
         $dbCategory->insertCategory($name, $desc, $idParent);
         header('Location:/admin.php?table=category');
@@ -198,6 +200,7 @@ if (isset($_POST['categoryEditSubmit'])) {
     <input type="submit" name="table" value="user">
     <input type="submit" name="table" value="category">
     <input type="submit" name="table" value="product">
+    <input type="submit" name="table" value="orders">
     <input type="submit" name="json" value="loadCategoryFromJson">
     <input type="submit" name="json" value="saveCategoryFromJson">
 </form>
@@ -228,7 +231,29 @@ if (isset($_GET['json'])) {
     if ($_GET['json'] == 'saveCategoryFromJson') {
         $allCat = $dbCategory->getAllCategory();
         $json = json_encode($allCat);
-        $bytes = file_put_contents('category.json', $json);
+        //$bytes = file_put_contents('category.json', $json);
+
+        //$detail1 = json_decode(file_get_contents("http://localhost/category.json"), true);
+        //$detail2 = json_decode(file_get_contents($detail1['data']),true);
+
+        //$file_url = $detail2['data'];
+        ob_start();
+        //echo $json;
+        $htmlStr = ob_get_contents();
+        ob_end_clean();
+        $file_url = 'category.json';
+        //file_put_contents($file_url, $htmlStr);
+
+        header('Content-Type: application/octet-stream');
+        header("Content-Transfer-Encoding: Binary");
+        header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\"");
+
+        ob_clean();
+        flush();
+        //readfile($file_url);
+        echo $json;
+        exit();
+
         echo 'Json was created!';
     }
 
@@ -236,10 +261,55 @@ if (isset($_GET['json'])) {
 }
 ?>
 
+<?php
+if (isset($_GET['showOrder'])) {
+    echo '<div class="order">';
+    $db = new Database();
+    $orderDetail = $db->getCompleteOrder($_GET['showOrder']);
+
+    echo 'Jméno: ' . $orderDetail['firstName'] . ' ' . $orderDetail['lastName'] . '<br>';
+    echo 'Telefon: ' . $orderDetail['phone'] . '<br>';
+    echo 'Adresa: ' . $orderDetail['city'] . ' ' . $orderDetail['postCode'] . '<br>';
+
+    $products = $db->getAllProductFromOrderByIdOrder($_GET['showOrder']);
+    $sum = $db->getSumOrder($_GET['showOrder']);
+
+    //echo 'Celková cena objednávky: '. $sum .'<br>';
+    //echo 'tabulka produktu<br>';
+
+    $sum = 0;
+    $dbProduct = new ProductDB();
+
+    echo '<table>
+            <thead>
+                <th>Jméno produktu</th>
+                <th>Počet</th>
+                <th>Cena za kus v kč</th>
+                <th>DPH</th>
+            </thead>';
+
+    foreach ($products as $item) {
+        $product = $dbProduct->getProductById($item['Product_idProduct']);
+        echo '<tr><td>' . $product['productName']. '</td>';
+        echo '<td>' . $item['quantity']. '</td>';
+        echo '<td>' . $product['price']. '</td>';
+        echo '<td>' . $product['vat']. '</td>';
+
+        echo '</tr>';
+        $sum += $product['price'] * $item['quantity'];
+    }
+
+    echo 'Celkova cena objednávky: ' . $sum . ',-Kč';
+    echo '</table></div>';
+
+
+    echo '</div>';
+}
+?>
+
 
 <?php
 //ADD
-
 if (isset($_GET['table']) and !isset($_GET['edit'])) {
     echo '<div class=addForm>';
     if ($_GET['table'] == 'user') {
@@ -289,7 +359,7 @@ if (isset($_GET['table']) and !isset($_GET['edit'])) {
                         <textarea class="textinput"  name="productDescription" required></textarea>
                     </div>
                 <label>VAT</label><br>
-                <select type="number" name="vat">
+                <select type="number" name="productVat">
                     <option value="10">10</option>
                     <option value="15">15</option>
                     <option value="21">21</option>
@@ -308,7 +378,6 @@ if (isset($_GET['table']) and !isset($_GET['edit'])) {
     }
     echo '</div>';
 }
-
 
 //EDIT+REMOVE
 if (isset($_GET['table'])) {
@@ -334,12 +403,12 @@ if (isset($_GET['table'])) {
                 </select><br><br>
                 <input type="submit"Přidej name="userEditSubmit" value="Edit">
            </form><br></div>';
-
         }
 
         if (isset($_GET['remove'])) {
             $id = $_GET['remove'];
             $dbUser->deleteUser($id);
+            header('Location:/admin.php?table=user');
         }
 
     }
@@ -361,12 +430,12 @@ if (isset($_GET['table'])) {
                 <input type="number" name="categoryIdCategory" value="' . $category['Category_idCategory'] . '"><br><br>
                 <input type="submit"Přidej name="categoryEditSubmit" value="Edit">
            </form><br></div>';
-
         }
 
         if (isset($_GET['remove'])) {
             $id = $_GET['remove'];
             $dbCategory->deleteCategory($id);
+            header('Location:/admin.php?table=category');
         }
     }
 
@@ -387,10 +456,10 @@ if (isset($_GET['table'])) {
                 <label>Description</label><br>
                 <!--<textarea rows=10 cols=100 type="text" name="productDescription" required>' . $product['productDescription'] . '</textarea><br>-->
                 <div class="comment">
-                    <textarea class="textinput"  name="productDescription" required>'.$product['productDescription'].'</textarea>
+                    <textarea class="textinput"  name="productDescription" required>' . $product['productDescription'] . '</textarea>
                 </div>
                 <label>VAT</label><br>
-                <select type="number" name="vat">
+                <select type="number" name="productVat">
                     <option value="10">10</option>
                     <option value="15">15</option>
                     <option value="21">21</option>
@@ -418,7 +487,6 @@ if (isset($_GET['table'])) {
                 <input type="file" name="file"><br><br>
                 <input type="submit" name="productEditSubmit" value="Edit">
            </form><br></div>';
-
         }
 
         if (isset($_GET['remove'])) {
@@ -426,9 +494,17 @@ if (isset($_GET['table'])) {
             $product = $dbProduct->getProductById($id);
             unlink('img/' . $product['imgLink']);
             $dbProduct->deleteProduct($id);
-            //header('Location:/admin.php?table=product');
+            header('Location:/admin.php?table=product');
         }
+    }
 
+    if($_GET['table'] == 'orders'){
+        if (isset($_GET['remove'])) {
+            $id = $_GET['remove'];
+            $dbOrder = new OrderDB();
+            $dbOrder->deleteFullOrder($id);
+            header('Location:/admin.php?table=orders');
+        }
     }
 }
 
@@ -486,12 +562,12 @@ if (isset($_GET['table'])) {
                     <td>' . $data['idProduct'] . '</td>
                     <td>' . $data['productName'] . '</td>
                     <td>' . $data['price'] . '</td>
-                    <td>' . $data['productDescription'] . '</td>
+                    <td id="tdDescription">' . $data['productDescription'] . '</td>
                     <td>' . $data['vat'] . '</td>
-                    <td>' . $data['imgLink'] . '</td>
+                    <td><img width="100px" src="../img/' . $data['imgLink'] . '"></td>
                     <td>
-                        <a href="admin.php?&table=product&edit=' . $data['idProduct'] . '" class="btn btn-info">Edit</a>
-                        <a href="admin.php?&table=product&remove=' . $data['idProduct'] . '" class="btn btn-info">Delete</a>
+                        <a href="admin.php?table=product&edit=' . $data['idProduct'] . '" class="btn btn-info">Edit</a>
+                        <a href="admin.php?table=product&remove=' . $data['idProduct'] . '" class="btn btn-info">Delete</a>
                     </td>
                   </tr>';
         }
@@ -515,10 +591,35 @@ if (isset($_GET['table'])) {
                     <td>' . $data['description'] . '</td>
                     <td>' . $data['Category_idCategory'] . '</td>
                     <td>
-                        <a href="admin.php?&table=category&edit=' . $data['idCategory'] . '" class="btn btn-info">Edit</a>
-                        <a href="admin.php?&table=category&remove=' . $data['idCategory'] . '" class="btn btn-info">Delete</a>
+                        <a href="admin.php?table=category&edit=' . $data['idCategory'] . '" class="btn btn-info">Edit</a>
+                        <a href="admin.php?table=category&remove=' . $data['idCategory'] . '" class="btn btn-info">Delete</a>
                     </td>
                   </tr>';
+        }
+        echo '</table>';
+    }
+    if ($tab == 'orders') {
+        echo '<table>
+                    <thead>
+                        <tr>
+                            <th>Objednávka</th>
+                            <th>User_idUser</th>
+                            <th>Time</th>
+                            <th colspan="2">Action</th>
+                        </tr>
+                    </thead>';
+        $count = 1;
+        foreach ($tableData as $data) {
+            echo '<tr>
+                    <td>' . $count . '</td>
+                    <td>' . $data['firstName'] . ' ' . $data['lastName'] . '</td>
+                    <td>' . $data['timeOrder'] . '</td>
+                    <td>
+                        <a href="admin.php?showOrder=' . $data['idOrder'] . '" class="btn btn-info">Show</a>
+                        <a href="admin.php?table=orders&remove=' . $data['idOrder'] . '" class="btn btn-info">Delete</a>
+                    </td>
+                  </tr>';
+            $count++;
         }
         echo '</table>';
     }
